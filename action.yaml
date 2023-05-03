@@ -1,0 +1,27 @@
+name: "Build FHIR Profiles"
+description: "Build FHIR profiles using FSH sushi"
+inputs:
+  project-dir:
+    description: "Root directory of the FSH Sushi project"
+    required: false
+    default: "."
+  node-version:
+    description: "Nodejs version to be used with sushi"
+    required: false
+    default: latest
+  sushi-version:
+    description: "FSH sushi version to be used"
+    required: false
+    default: "latest"
+runs:
+  using: composite
+  steps:
+    - name: Setup NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ inputs.node-version }}
+    - run: npm install -g fsh-sushi@${{ inputs.sushi-version }}
+      shell: bash
+    - run: sushi
+      working-directory: ${{ inputs.project-dir }}
+      shell: bash
