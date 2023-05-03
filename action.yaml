@@ -8,11 +8,11 @@ inputs:
   node-version:
     description: "Nodejs version to be used with sushi"
     required: false
-    default: latest
+    default: "*"
   sushi-version:
     description: "FSH sushi version to be used"
     required: false
-    default: "latest"
+    default: latest
 runs:
   using: composite
   steps:
