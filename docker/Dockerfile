@@ -1,3 +1,34 @@
+FROM alpine AS alpine-base
+
+ARG FIRELY_TERMINAL_VERSION
+
+RUN apk add --update \
+    dotnet6-sdk \
+    npm
+
+# Install the Firely Terminal
+RUN dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION
+
+# ENV DOTNET_ROOT=/usr/lib/dotnet
+# ENV PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+
+
+FROM ghcr.io/cybernop/build-fhir-profiles:alpine-base as alpine
+
+ARG SUSHI_VERSION
+
+# Install FSH sushi
+RUN npm install --global fsh-sushi@$SUSHI_VERSION
+
+COPY entrypoint.sh /root/entrypoint.sh
+RUN chmod a+rx /root && chmod a+x /root/entrypoint.sh
+
+ENV PROJECT_DIR=/project
+ENV SUSHI_ROOT=.
+
+ENTRYPOINT [ "/root/entrypoint.sh" ]
+
+
 FROM ubuntu AS base
 
 ARG FIRELY_TERMINAL_VERSION
