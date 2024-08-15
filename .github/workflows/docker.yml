@@ -132,6 +132,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          target: ${{ matrix.os }}
           build-args: |
+            OS_BASE=${{ matrix.os }}
             SUSHI_VERSION=${{ matrix.sushi-version }}

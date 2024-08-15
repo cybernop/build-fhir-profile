@@ -2,7 +2,7 @@ services:
   build-fhir-profiles-base:
     image: ghcr.io/cybernop/build-fhir-profiles:base
     build:
-      target: base
+      target: base-ubuntu
       args:
         - FIRELY_TERMINAL_VERSION=3.1.0
 
@@ -10,4 +10,5 @@ services:
     image: ghcr.io/cybernop/build-fhir-profiles:latest
     build:
       args:
+        - OS_BASE=ubuntu
         - SUSHI_VERSION=3.11.0
