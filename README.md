@@ -1,5 +1,7 @@
 # build-fhir-profiles
 
+[![Docker Images](https://github.com/cybernop/build-fhir-profiles/actions/workflows/docker.yml/badge.svg)](https://github.com/cybernop/build-fhir-profiles/actions/workflows/docker.yml)
+
 ## Action
 Build FHIR profiles using FSH Sushi
 
