@@ -9,8 +9,8 @@ on:
   push:
     paths:
       - ".github/workflows/*.yml"
-      - "Dockerfile"
-      - "entrypoint.sh"
+      - "**/Dockerfile"
+      - "**/entrypoint.sh"
 
 env:
   # Use docker.io for Docker Hub if empty
