@@ -4,36 +4,35 @@
 
 This repository provides a github action and a Docker image to build FHIR profiles using FSH Sushi.
 
-## Action
-Build FHIR profiles using FSH Sushi
+## github Action
 
-### Usage
+This github action builds FHIR profiles using FSH Sushi and Firely Terminal. The Firely Terminal is used to download and inflate the project dependencies before building the JSON files using FSH Sushi.
 
 see [action.yaml](action.yaml)
 
 ```yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: cybernop/fill-fhir-cache@v1
+  - uses: cybernop/build-fhir-profiles@v2
     with:
       project-dir: "."
-  - uses: cybernop/build-fhir-profiles@v1
-    with:
-      sushi-version: 2.10.1
-      node-version: 18
-      project-dir: "."
+      sushi-version: 3.11.0
+      firely-terminal-version: 3.1.0
+      node-version: lts/*
+      dotnet-version: 6.0.x
 ```
-#### Using the `sushi-version` input
 
-Sets sushi version. By default the latest stable release is used.
+### Parameters
 
-#### Using the `node-version` input
+#### Input
 
-Sets nodejs version to be used for sushi. By default the latest LTS version is used.
-
-#### Using the `project-dir` input
-
-This input sets the root directory of the FHIR project. By default the current directory is used.
+| Name | Description | Required | Default |
+| --- | --- | :-: | :-: |
+| `project-dir` | Root directory of the FSH Sushi project | False | `.` |
+| `sushi-version` | Version of FSH sushi for building | True | - |
+| `firely-terminal-version` | Version of Firely Terminal | True | - |
+| `node-version` | Version of NodeJS | False | `lts/*` |
+| `dotnet-version` | Version of .NET | False | `6.0.x` |
 
 ## Docker Image
 
