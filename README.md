@@ -64,6 +64,6 @@ chmod a+x build-fhir-profiles.sh
 Call the script with
 
 ```bash
-[SUSHI_VERSION=<sushi version>] fhir-check.sh [<project dir>]
+[SUSHI_VERSION=<sushi version>] build-fhir-profiles.sh [<project dir>]
 ```
 
