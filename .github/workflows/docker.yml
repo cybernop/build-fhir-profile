@@ -17,7 +17,7 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  PLATFORMS: linux/amd64
+  PLATFORMS: linux/amd64,linux/arm64
 
 jobs:
   build-base-image:
@@ -85,7 +85,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sushi-version: ["3.11.0"]
+        sushi-version: ["3.8.0","3.9.0","3.10.0","3.11.0"]
         os: ["ubuntu", "alpine"]
     permissions:
       contents: read
