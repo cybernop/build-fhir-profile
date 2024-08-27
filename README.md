@@ -1,6 +1,6 @@
 # build-fhir-profiles
 
-[![Docker Images](https://github.com/cybernop/build-fhir-profiles/actions/workflows/docker.yml/badge.svg)](https://github.com/cybernop/build-fhir-profiles/actions/workflows/docker.yml)
+[![Docker Images](https://github.com/cybernop/build-fhir-profiles/actions/workflows/docker.yml/badge.svg)](https://github.com/cybernop/build-fhir-profiles/actions/workflows/docker.yml) ![Latest Sushi Version](https://img.shields.io/badge/Latest%20Sushi%20Version-3.11.0-blue.svg)
 
 This repository provides a github action and a Docker image to build FHIR profiles using FSH Sushi.
 
