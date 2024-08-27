@@ -1,15 +1,26 @@
 ARG OS_BASE
 
-FROM alpine AS base-alpine
-
-ARG FIRELY_TERMINAL_VERSION
+FROM alpine:3.20 AS base-alpine
 
 RUN apk add --update \
-    dotnet6-sdk \
+    bash \
+    icu-libs \
     npm
 
+# Installieren der notwendige Tools
+# Add Microsoft's .NET SDK repository and install .NET SDK
+RUN wget https://dot.net/v1/dotnet-install.sh \
+    && chmod +x dotnet-install.sh \
+    && ./dotnet-install.sh --channel 8.0 --install-dir /usr/share/dotnet \
+    && ln -s /usr/share/dotnet/dotnet /usr/local/bin \
+    && rm dotnet-install.sh
+
 # Install the Firely Terminal
-RUN dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION
+RUN dotnet tool install Firely.Terminal --tool-path /usr/local/bin
+
+# Workaround for permissions issues for dotnet tools
+RUN chmod -R 777 /root
+ENV HOME=/root
 
 # ENV DOTNET_ROOT=/usr/lib/dotnet
 # ENV PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
@@ -72,4 +83,4 @@ RUN chmod a+rx /root && chmod a+x /root/entrypoint.sh
 ENV PROJECT_DIR=/project
 ENV SUSHI_ROOT=.
 
-ENTRYPOINT [ "/root/entrypoint.sh" ]
+ENTRYPOINT [ "sh", "/root/entrypoint.sh" ]

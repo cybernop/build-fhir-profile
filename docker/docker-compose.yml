@@ -10,3 +10,15 @@ services:
       args:
         - OS_BASE=ubuntu
         - SUSHI_VERSION=3.11.0
+
+  base-alpine:
+    image: ghcr.io/cybernop/build-fhir-profiles:base-alpine
+    build:
+      target: base-alpine
+
+  latest-alpine:
+    image: ghcr.io/cybernop/build-fhir-profiles:latest-alpine
+    build:
+      args:
+        - OS_BASE=alpine
+        - SUSHI_VERSION=3.11.0
