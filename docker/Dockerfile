@@ -30,7 +30,7 @@ ARG DOTNET_VERSION=6.0
 
 RUN apt update \
     && apt install -y \
-    # dotnet-sdk-8.0 \
+    wget \
     npm
 
 # Installieren der notwendige Tools
