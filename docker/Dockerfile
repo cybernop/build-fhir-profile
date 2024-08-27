@@ -17,6 +17,7 @@ RUN wget https://dot.net/v1/dotnet-install.sh \
 
 # Install the Firely Terminal
 RUN dotnet tool install Firely.Terminal --tool-path /usr/local/bin
+ENV DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 # Workaround for permissions issues for dotnet tools
 RUN chmod -R 777 /root
@@ -44,6 +45,7 @@ RUN wget https://dot.net/v1/dotnet-install.sh \
 # Install the Firely Terminal
 RUN dotnet tool install --global Firely.Terminal
 ENV PATH="$PATH:/root/.dotnet/tools"
+ENV DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 
 FROM ghcr.io/cybernop/build-fhir-profiles:base-$OS_BASE
