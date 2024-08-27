@@ -119,7 +119,8 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ matrix.sushi-version }}-${{ matrix.os }}
-            type=raw,value=${{ matrix.sushi-version }},enable=${{ matrix.os == 'ubuntu' }}
+            type=raw,value=${{ matrix.sushi-version }},enable=${{ matrix.os == 'alpine' }}
+            type=raw,value=latest,enable=${{ matrix.os == 'alpine' && matrix.sushi-version == '3.11.0' }}
 
       # Build and push Docker image with Buildx (push on tag)
       # https://github.com/docker/build-push-action
