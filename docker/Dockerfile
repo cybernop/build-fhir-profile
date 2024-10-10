@@ -27,12 +27,17 @@ ENV HOME=/root
 FROM ubuntu:24.04 AS base-ubuntu
 
 ARG NODE_VERSION=20.16.0
-ARG DOTNET_VERSION=6.0
 
 RUN apt update \
     && apt install -y \
-    wget \
-    npm
+    wget
+
+RUN wget https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh \
+    && chmod +x nodesource_setup.sh \
+    && ./nodesource_setup.sh \
+    && rm nodesource_setup.sh
+
+RUN apt update && install -y nodejs
 
 # Installieren der notwendige Tools
 # Add Microsoft's .NET SDK repository and install .NET SDK
