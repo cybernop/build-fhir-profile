@@ -26,24 +26,20 @@ ENV HOME=/root
 
 FROM ubuntu:24.04 AS base-ubuntu
 
-ARG NODE_VERSION=20.16.0
-
 RUN apt update \
     && apt install -y \
-    wget
+    wget \
+    libicu74
 
-RUN wget https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh \
-    && chmod +x nodesource_setup.sh \
-    && ./nodesource_setup.sh \
+RUN wget https://deb.nodesource.com/setup_20.x -O nodesource_setup.sh \
+    && bash ./nodesource_setup.sh \
     && rm nodesource_setup.sh
 
-RUN apt update && install -y nodejs
-
+RUN apt update && apt install -y nodejs
 # Installieren der notwendige Tools
 # Add Microsoft's .NET SDK repository and install .NET SDK
 RUN wget https://dot.net/v1/dotnet-install.sh \
-    && chmod +x dotnet-install.sh \
-    && ./dotnet-install.sh --channel 8.0 --install-dir /usr/share/dotnet \
+    && bash ./dotnet-install.sh --channel 8.0 --install-dir /usr/share/dotnet \
     && ln -s /usr/share/dotnet/dotnet /usr/local/bin \
     && rm dotnet-install.sh
 
