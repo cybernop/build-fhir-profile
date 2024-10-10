@@ -48,7 +48,7 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 ENV DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 
-FROM ghcr.io/cybernop/build-fhir-profiles:base-$OS_BASE
+FROM base-${OS_BASE}
 
 ARG SUSHI_VERSION
 
